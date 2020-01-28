@@ -8,12 +8,14 @@ import java.net.Socket;
 
 public class Main {
 
+    //Connect to a server, immediately get the board and then decode it to a board Object
     public static void main(String[] args) {
         JSONHandler json = new JSONHandler();
 
         try {
             Socket socket = new Socket("localhost", 8008);
             System.out.println("Connecting to port 8008");
+
             InputStream input = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 

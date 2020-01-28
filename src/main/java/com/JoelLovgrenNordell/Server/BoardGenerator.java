@@ -5,19 +5,20 @@ import java.util.List;
 import java.util.Random;
 
 public class BoardGenerator {
-    List<String[]> board = new ArrayList<String[]>();
+    List<String[]> board = new ArrayList<String[]>();   //Columns
 
     public BoardGenerator(){
     }
 
     public void generate(){
-        String[] arrayTemplate = new String[]{"#", "#", "#", "#", "#", "#", "#", "#", "#", "#"};
+        String[] arrayTemplate = new String[]{"#", "#", "#", "#", "#", "#", "#", "#", "#", "#"};    //Rows
 
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 10; i++){        //Insert 10 Rows into the columns
             board.add(arrayTemplate.clone());
         }
     }
 
+    //This would be replaced by the players placing their own pieces
     public void placePieces(){
         Random ranBool = new Random();
         carrier(ranBool.nextBoolean());
@@ -28,6 +29,8 @@ public class BoardGenerator {
 
         printBoard();
     }
+
+    //Check if any of the given places have a piece already there, if so return false if not place pieces and return true
     private boolean hPlacer(int startX, int startY, int size, String shipType){
         for(int i = 0; i < size; i++){
             if(check(startX, startY+i)){
@@ -42,6 +45,7 @@ public class BoardGenerator {
         return true;
     }
 
+    //Same as above but switch out flipping through Y with X
     private boolean vPlacer(int startX, int startY, int size, String shipType){
         for(int i = 0; i < size; i++){
             if(check(startX+i, startY)){
@@ -56,6 +60,7 @@ public class BoardGenerator {
         return true;
     }
 
+    //Create 2 new random numbers that's within the array for its size (this would be replaced with a user placing their own pieces)
     private void carrier(boolean direction){
         Random rand = new Random();
         int x, y;
@@ -63,7 +68,7 @@ public class BoardGenerator {
             x = rand.nextInt(10);
             y = rand.nextInt(6);
 
-            if(!hPlacer(x, y, 5, "C")){
+            if(!hPlacer(x, y, 5, "C")){     //If the placer method returns false (meaning there's an intersection) re-run this function with new random numbers (but the same direction)
                 carrier(direction);
             }
         }else{
@@ -75,6 +80,7 @@ public class BoardGenerator {
             }
         }
     }
+
 
     private void battleship(boolean direction){
         Random rand = new Random();
@@ -96,6 +102,7 @@ public class BoardGenerator {
         }
     }
 
+    //The rest of these does the same thing except for destroyerSub which also has a boolean checking if it's a destroyed or a sub that's placed, both are 3 long so the same function can be used.
     private void destroyerSub(boolean direction, boolean isSub){
         Random rand = new Random();
         String ship;
@@ -152,10 +159,12 @@ public class BoardGenerator {
         }
     }
 
+    //If selected coords doesn't match # (empty space) and doesn't match X (space where it shot) then return true (meaning it's hit a ship)
     private boolean check(int X, int Y){
         return !board.get(X)[Y].matches("#") && !board.get(X)[Y].matches("X");
     }
 
+    //Unused future function that takes 2 coords, and fires, if it hits print out hit (would replace with return true / false).
     public void attack(int X, int Y){
         System.out.println("Attacking X: " +X +" Y: " +Y);
 

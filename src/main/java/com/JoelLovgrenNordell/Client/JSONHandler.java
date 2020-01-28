@@ -1,5 +1,4 @@
 package com.JoelLovgrenNordell.Client;
-
 import com.google.gson.Gson;
 
 public class JSONHandler {

@@ -9,7 +9,7 @@ public class Board {
     public Board(){
     }
 
-    public Board(List board){
+    public Board(List board){   //Creates a board from a board, used for decoding from JSON
         this.board = board;
     }
 

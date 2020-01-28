@@ -7,6 +7,7 @@ import java.net.Socket;
 
 public class Main {
 
+    //Start a server, wait until a client logs on, when they do create a new board and encode that to JSON before sending it.
     public static void main(String[] args) {
         try{
             ServerSocket server = new ServerSocket(8008);
