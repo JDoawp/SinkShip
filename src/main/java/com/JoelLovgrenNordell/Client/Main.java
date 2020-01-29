@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.Random;
 
 public class Main {
 
     //Connect to a server, immediately get the board and then decode it to a board Object
     public static void main(String[] args) {
+        Random ran = new Random();
         JSONHandler json = new JSONHandler();
 
         try {
